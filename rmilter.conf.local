@@ -1,0 +1,18 @@
+bind_socket = inet:9900@127.0.0.1;
+spamd {
+    spamd_greylist = no;
+    whitelist = "127.0.0.1";
+}
+
+clamav {
+    servers = /var/run/clamav/clamd.ctl;
+}
+limits {
+    enable = false;
+}
+greylisting {
+    enable = false;
+}
+dkim {
+    enable = false;
+}
