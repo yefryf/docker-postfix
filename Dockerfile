@@ -2,15 +2,17 @@ FROM ubuntu:latest
 #
 # # File Author / Maintainer
 MAINTAINER Yefry Figueroa
+
 # Set to no tty
 ARG DEBIAN_FRONTEND=noninteractive
+
 # Set the locale
+RUN apt-get clean && apt-get update && apt-get -y dist-upgrade && apt-get install -y locales
 RUN locale-gen en_US.UTF-8
-ENV LANG=en_US.UTF-8 \
-    LANGUAGE=en_US:en \
-    LC_ALL=en_US.UTF-8
-RUN apt-get update && \
-    apt-get -y dist-upgrade
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 # install postfix
 RUN echo "postfix postfix/main_mailer_type select smarthost" | debconf-set-selections && \
     echo "postfix postfix/mailname string localhost" | debconf-set-selections && \
